@@ -1,4 +1,4 @@
-import java.io.IOException;
+ra import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -6,14 +6,164 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Interpreter {
-//    todo
-//    has no else
-//    doesn't look at the package and imports, only looks at func main
-//    if stuff after main - will give errors
-//    var x = 10 - only supported assignment
-//    no ( ) in expressions
-//    supports only integer variables
-//    fmt.Scanln(&n) - doesn't check if n exists or not
+    public int parse_expr(String expr) {
+        expr = expr.trim();
+        if (expr.contains("+")) {
+            int i = expr.indexOf("+");
+            return parse_expr(expr.substring(0, i)) + parse_expr(expr.substring((i+1)));
+        }
+        else if (expr.contains("-") && !expr.startsWith("-")) {
+            int i = expr.indexOf("-");
+            return parse_expr(expr.substring(0, i)) - parse_expr(expr.substring((i+1)));
+        }
+        else if (expr.contains("/")) {
+            int i = expr.indexOf("/");
+            return parse_expr(expr.substring(0, i)) / parse_expr(expr.substring((i+1)));
+        }
+        else if (expr.contains("*")) {
+            int i = expr.indexOf("*");
+            return parse_expr(expr.substring(0, i)) * parse_expr(expr.substring((i+1)));
+        }
+        else if (expr.contains("%")) {
+            int i = expr.indexOf("%");
+            return parse_expr(expr.substring(0, i)) % parse_expr(expr.substring((i+1)));
+        }
+        else if (expr.startsWith("-")) {
+            return - parse_expr(expr.substring(1));
+        }
+        else if (state.get(expr) != null)
+            return state.get(expr);
+        else
+            return Integer.parseInt(expr);
+    }
+
+    public boolean parse_cond(String cond) {
+//        first is checked or/and, ==/<= so the order of execution is done right
+        if (cond.contains("&&")) {
+            int i = cond.indexOf("&&");
+            return parse_cond(cond.substring(0, i)) && parse_cond(cond.substring((i+2)));
+        }
+        else if (cond.contains("||")) {
+            int i = cond.indexOf("||");
+            return parse_cond(cond.substring(0, i)) || parse_cond(cond.substring((i+2)));
+        }
+        else if (cond.startsWith("!")) {
+            return ! parse_cond(cond.substring(1));
+        }
+        else if (cond.contains(">=")) {
+            int i = cond.indexOf(">=");
+            return parse_expr(cond.substring(0, i)) >= parse_expr(cond.substring((i+2)));
+        }
+        else if (cond.contains(">")) {
+            int i = cond.indexOf(">");
+            return parse_expr(cond.substring(0, i)) > parse_expr(cond.substring((i+1)));
+        }
+        if (cond.contains("<=")) {
+            int i = cond.indexOf("<=");
+            return parse_expr(cond.substring(0, i)) <= parse_expr(cond.substring((i+2)));
+        }
+        else if (cond.contains("<")) {
+            int i = cond.indexOf("<");
+            return parse_expr(cond.substring(0, i)) < parse_expr(cond.substring((i+1)));
+        }
+        else if (cond.contains("==")) {
+            int i = cond.indexOf("==");
+            return parse_expr(cond.substring(0, i)) == parse_expr(cond.substring((i+2)));
+        }
+        else if (cond.contains("!=")) {
+            int i = cond.indexOf("!=");
+            return parse_expr(cond.substring(0, i)) != parse_expr(cond.substring((i+2)));
+        }
+
+        throw new RuntimeException("Unsupported expression");
+    }
+
+    public void execute(String stm) {
+//        go lang ignores all ; at the end of the statement x=7;;; allowed in go
+        stm = stm.trim();
+        while (stm.endsWith(";"))
+            stm = stm.substring(0, stm.length() - 1);
+
+//            ignore comments
+        if (stm.startsWith("//")) {
+            return;
+        }
+
+//        read user input
+//        fmt.Scanln(&n)
+        else if (stm.startsWith("fmt.Scanln(&")) {
+            String name = stm.substring(12, stm.length()-1);
+            Scanner scanner = new Scanner(System.in);
+            int num = Integer.parseInt(scanner.nextLine().trim());
+            this.state.put(name, num);
+        }
+
+//        fmt.Println("...") or fmt.Println(...)
+        else if (stm.startsWith("fmt.Println")) {
+//            print string
+            if (stm.startsWith("fmt.Println(\"")) {
+//                remove at start fmt.Println(", and at end ")
+                String content = stm.substring(13, stm.length()-2);
+                System.out.println(content);
+            }
+//            print expression
+            else {
+                String expr = stm.substring(12, stm.length()-1);
+                System.out.println(parse_expr(expr));
+            }
+        }
+//      declaring variables
+        else if (stm.startsWith("var")) {
+            int i = stm.indexOf('=');
+            String name = stm.substring(3, i).trim();
+            String expr = stm.substring(i+1).trim();
+
+            program(name + "  " + expr);
+            this.state.put(name, parse_expr(expr));
+        }
+//        changing variables
+        else if (!stm.contains("if") && !stm.contains("for") && stm.contains("=")) {
+            int i = stm.indexOf('=');
+            String name = stm.substring(0, i).trim();
+            String expr = stm.substring(i+1).trim();
+
+            program(name + "  " + expr);
+            this.state.put(name, parse_expr(expr));
+        }
+
+        else if (stm.startsWith("if")) {
+            int start = stm.indexOf('{');
+            int end = stm.lastIndexOf('}');
+//             cond - after if before {
+            String cond = stm.substring(2, start).trim();
+//            sts - after first { all the way to the code minus the last }
+            String sts = stm.substring(start + 1, stm.length()-1).trim();
+            boolean b = parse_cond(cond);
+//            System.out.println("-- " + cond + "    " + sts);
+            if (b) {
+                program(sts);
+            }
+        }
+
+        else if (stm.startsWith("for")) {
+            int start = stm.indexOf('{');
+            int end = stm.lastIndexOf('}');
+//             cond - after for before {
+            String cond = stm.substring(3, start).trim();
+//            sts - after first { all the way to the code minus the last }
+            String sts = stm.substring(start + 1, stm.length()-1).trim();
+            boolean b = parse_cond(cond);
+//            System.out.println("-- " + cond + "    " + sts);
+
+//          if cond run sts and run while again
+//          c`.pr = sts, c.pr
+            if (b) {
+                program(sts);
+                program(stm);
+            }
+        }
+
+    }
 
     private final Map<String, Integer> state = new HashMap<>(); // Variable storage
     // todo execute parse statement parse expression
