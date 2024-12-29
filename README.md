@@ -43,6 +43,8 @@ Input Handling: Reads user input via fmt.Scanln. (We decided it would be good if
 Output Handling: Prints expressions or strings using fmt.Println.<br>
 <br>
 In order for a code to run successfully the user must use a runCode command and insert path to the file they want to run.<br>
+example: Interpreter interpreter = new Interpreter(); //declaire new interpreter
+        Map<String, Integer>  c = interpreter.runCode("FILENAME"); //run the GO file
 
 <br><br>
 *(All of the go code testers are available in `go-codes` branch)*
