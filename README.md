@@ -2,7 +2,7 @@
 <br><br>
 ### This project is a basic interpreter for GoLang implemented in Java. The interpreter provides minimal support for a subset of GoLang syntax and functionalities, specifically focusing on expressions, conditional statements, loops, and variable management within the func main() block. The interpreter reads GoLang source files, extracts the main function, and executes its contents statement by statement. 
 <br><br>
-Team members<br>
+### Team members<br>
 Mariam Devsurashvili - Parsing Logic and Expression Evaluation, Contributed to designing the interpreter's initial architecture by implementing half of the required algorithms in Go.
 <br>
 Ekaterine Gamsakhurdia - Initial Interpreter Design, Core Logic Implementation, Contributed to designing the interpreter's initial architecture by implementing half of the required algorithms in Go.
