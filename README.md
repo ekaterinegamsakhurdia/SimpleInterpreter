@@ -1,11 +1,11 @@
-Golang interpreter in Java
-
-This project is a basic interpreter for GoLang implemented in Java. The interpreter provides minimal support for a subset of GoLang syntax and functionalities, specifically focusing on expressions, conditional statements, loops, and variable management within the func main() block. The interpreter reads GoLang source files, extracts the main function, and executes its contents statement by statement. 
-
-Team members
+# Golang interpreter in Java
+<br><br>
+### This project is a basic interpreter for GoLang implemented in Java. The interpreter provides minimal support for a subset of GoLang syntax and functionalities, specifically focusing on expressions, conditional statements, loops, and variable management within the func main() block. The interpreter reads GoLang source files, extracts the main function, and executes its contents statement by statement. 
+<br><br>
+Team members<br>
 Mariam Devsurashvili Parsing Logic and Expression Evaluation, Contributed to designing the interpreter's initial architecture by implementing half of the required algorithms in Go.
 Ekaterine Gamsakhurdia Initial Interpreter Design, Core Logic Implementation, Contributed to designing the interpreter's initial architecture by implementing half of the required algorithms in Go.
-
+<br><br>
 The goal was the interpreter to support the algorithms listed below
             1. Sum of First N Numbers
             2. Factorial of N
@@ -17,10 +17,12 @@ The goal was the interpreter to support the algorithms listed below
             8. Sum of Digits
             9. Multiplication Table
             10. Nth Fibonacci Number
-            
+      <br><br>      
 First we implemented the listed algorithms in go and based on those codes we decided what exactly we needed to consider in our simple interpreter and what was not crucial.
-
+<br><br>
 User guide to the Interpreter 
-
+<br><br>
 The interpreter can read the code straigt from a go file
 In order to run a program the file must have the main function, the code in the main function is executed. Without the main function, exception is thrown.
+<br><br>
+*(All of the go code testers are available in `go-codes` branch)*
