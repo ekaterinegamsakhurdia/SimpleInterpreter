@@ -9,17 +9,17 @@ Ekaterine Gamsakhurdia - Initial Interpreter Design, Core Logic Implementation, 
 <br><br>
 
 ### The goal and workflow
-The goal was the interpreter to support the algorithms listed below 
-            1. Sum of First N Numbers
-            2. Factorial of N
-            3. GCD of Two Numbers
-            4. Reverse a Number
-            5. Check if a Number is Prime
-            6. Check if a Number is Palindrome
-            7. Find the Largest Digit in a Number
-            8. Sum of Digits
-            9. Multiplication Table
-            10. Nth Fibonacci Number
+The goal was the interpreter to support the algorithms listed below <br>
+            1. Sum of First N Numbers<br>
+            2. Factorial of N<br>
+            3. GCD of Two Numbers<br>
+            4. Reverse a Number<br>
+            5. Check if a Number is Prime<br>
+            6. Check if a Number is Palindrome<br>
+            7. Find the Largest Digit in a Number<br>
+            8. Sum of Digits<br>
+            9. Multiplication Table<br>
+            10. Nth Fibonacci Number<br>
       <br><br>      
 First we implemented the listed algorithms in go and based on those codes we decided what exactly we needed to consider in our simple interpreter and what was not crucial.
 
