@@ -23,8 +23,8 @@ The goal was the interpreter to support the algorithms listed below
 First we implemented the listed algorithms in go and based on those codes we decided what exactly we needed to consider in our simple interpreter and what was not crucial.
 <br><br>
 
-#User guide to the Interpreter 
-<br><br>
+# User guide to the Interpreter 
+<br>
 The interpreter can read the code straigt from a go file
 In order to run a program the file must have the main function, the code in the main function is executed. Without the main function, exception is thrown.
 New statement should start from a new line. Since GO ignores semicolons (They don't throw errors/exceptions but are not taken into account), we used new lines as splitters. Our interpreter acts the same as GO when it comes to semicolons.
