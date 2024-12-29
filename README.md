@@ -1,6 +1,0 @@
-"# Test" 
-"# Test" 
-"# SimpleInterpreter" 
-"# SimpleInterpreter" 
-"# SimpleInterpreter" 
-"# SimpleInterpreter" 
