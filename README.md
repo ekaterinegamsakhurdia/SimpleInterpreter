@@ -28,19 +28,19 @@ Therefore we split the work in two parts, and appropriate two branches. In the m
 
 # User guide to the Interpreter 
 <br>
-The interpreter can read the code straigt from a go file
-In order to run a program the file must have the main function, the code in the main function is executed. Without the main function, exception is thrown.
-New statement should start from a new line. Since GO ignores semicolons (They don't throw errors/exceptions but are not taken into account), we used new lines as splitters. Our interpreter acts the same as GO when it comes to semicolons.
-User can comment out lines by using "//"
-The interpreter supports the following GoLang features:
-Arithmetic Operations: Handles +, -, *, /, and % operators.
-Variable Declaration and Assignment (Only using "var" keyword) 
-Conditional Statements: Supports if statements with logical operators like &&, ||, !, and comparisons such as <, >, <=, >=, ==, and !=.
-Loops: Processes for loops with condition-based execution. (for condition)
-Input Handling: Reads user input via fmt.Scanln. (We decided it would be good if the user can insert input from the console so we added scanner)
-Output Handling: Prints expressions or strings using fmt.Println.
+The interpreter can read the code straigt from a go file <br>
+In order to run a program the file must have the main function, the code in the main function is executed. Without the main function, exception is thrown.<br>
+New statement should start from a new line. Since GO ignores semicolons (They don't throw errors/exceptions but are not taken into account), we used new lines as splitters. Our interpreter acts the same as GO when it comes to semicolons.<br>
+User can comment out lines by using "//"<br>
+The interpreter supports the following GoLang features:<br>
+Arithmetic Operations: Handles +, -, *, /, and % operators.<br>
+Variable Declaration and Assignment (Only using "var" keyword) <br>
+Conditional Statements: Supports if statements with logical operators like &&, ||, !, and comparisons such as <, >, <=, >=, ==, and !=.<br>
+Loops: Processes for loops with condition-based execution. (for condition)<br>
+Input Handling: Reads user input via fmt.Scanln. (We decided it would be good if the user can insert input from the console so we added scanner)<br>
+Output Handling: Prints expressions or strings using fmt.Println.<br>
 <br>
-In order for a code to run successfully the user must use a runCode command and insert path to the file they want to run.
+In order for a code to run successfully the user must use a runCode command and insert path to the file they want to run.<br>
 
 <br><br>
 *(All of the go code testers are available in `go-codes` branch)*
