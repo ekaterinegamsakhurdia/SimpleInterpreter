@@ -4,9 +4,11 @@
 <br><br>
 Team members<br>
 Mariam Devsurashvili Parsing Logic and Expression Evaluation, Contributed to designing the interpreter's initial architecture by implementing half of the required algorithms in Go.
+<br><br>
 Ekaterine Gamsakhurdia Initial Interpreter Design, Core Logic Implementation, Contributed to designing the interpreter's initial architecture by implementing half of the required algorithms in Go.
 <br><br>
-The goal was the interpreter to support the algorithms listed below
+
+The goal was the interpreter to support the algorithms listed below 
             1. Sum of First N Numbers
             2. Factorial of N
             3. GCD of Two Numbers
