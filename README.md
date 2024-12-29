@@ -32,7 +32,9 @@ The interpreter can read the code straigt from a go file <br>
 In order to run a program the file must have the main function, the code in the main function is executed. Without the main function, exception is thrown.<br>
 New statement should start from a new line. Since GO ignores semicolons (They don't throw errors/exceptions but are not taken into account), we used new lines as splitters. Our interpreter acts the same as GO when it comes to semicolons.<br>
 User can comment out lines by using "//"<br>
-The interpreter supports the following GoLang features:<br>
+<br><br>
+
+### The interpreter supports the following GoLang features:<br>
 Arithmetic Operations: Handles +, -, *, /, and % operators.<br>
 Variable Declaration and Assignment (Only using "var" keyword) <br>
 Conditional Statements: Supports if statements with logical operators like &&, ||, !, and comparisons such as <, >, <=, >=, ==, and !=.<br>
