@@ -20,3 +20,7 @@ The goal was the interpreter to support the algorithms listed below
             
 First we implemented the listed algorithms in go and based on those codes we decided what exactly we needed to consider in our simple interpreter and what was not crucial.
 
+User guide to the Interpreter 
+
+The interpreter can read the code straigt from a go file
+In order to run a program the file must have the main function, the code in the main function is executed. Without the main function, exception is thrown.
